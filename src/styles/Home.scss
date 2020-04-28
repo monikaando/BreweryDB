@@ -1,0 +1,17 @@
+.homepage {
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-start;
+   align-items: flex-start;
+   button {
+        padding: 1%;
+        margin:2%;
+        width: 20%;
+        background-color:#ffb700ec;
+        border-color: rgba(255, 211, 99, 0.773);
+        border-radius: 5px;
+        color:#240603b9;
+        font-size: 1em;
+        font-weight: 700;
+   }
+}
