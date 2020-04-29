@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../styles/BreweryList.scss';
 import axios from 'axios';
+import _ from "lodash";
+
 
 
 class BreweryList extends Component {
@@ -9,7 +11,8 @@ class BreweryList extends Component {
         this.state={
             breweries:[]
         }
-        this.getBreweriesList=this.getBreweriesList.bind(this)
+        this.getBreweriesList=this.getBreweriesList.bind(this);
+        this.removeDuplicates=this.removeDuplicates.bind(this);
     }
     componentDidMount() {
         this.getBreweriesList();
@@ -24,22 +27,26 @@ class BreweryList extends Component {
             this.setState({
                 breweries: res.data.data
             })
-            
+            this.removeDuplicates()  
         })
         .catch((err)=> {
                 console.log( "Not sent")
-    })
-        
+        })
+    }
+    removeDuplicates() {
+        if(this.state.breweries){
+        var unique = _.uniqBy(this.state.breweries,'breweryId')
+        }
+        this.setState({
+            breweries:unique
+        })
     }
     render() {
         return (
             <div>
-                <div>
-                    <button onClick={this.getBreweriesList}>get brewery list</button>
-                </div>
                 {this.state.breweries.map((item) => (
-                    <div key={item.id}>
-                        <h2>{item.brewery.name}</h2>
+                    <div key={item.id} onClick={() => this.props.history.push(`brewery/${item.breweryId}`)}>
+                        <h2>{item.name}</h2>
                     </div>
                 ))}
             </div>    
