@@ -1,6 +1,3 @@
-a {
-    color: #EDE6EE;
-}
 .footer {
     display: flex;
     align-items: center;
@@ -16,5 +13,12 @@ a {
     and (min-width: 300px)
     and (max-width: 500px) { 
         font-size: 10px;
+    }
+    a {
+        text-decoration: underline;
+        color: #EDE6EE;
+    }
+    h4 {
+        color: #EDE6EE;
     }
 }

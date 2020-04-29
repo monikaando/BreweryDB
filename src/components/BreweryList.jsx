@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from "react-router-dom";
 import '../styles/BreweryList.scss';
 import axios from 'axios';
 import _ from "lodash";
@@ -45,8 +46,8 @@ class BreweryList extends Component {
         return (
             <div>
                 {this.state.breweries.map((item) => (
-                    <div key={item.id} onClick={() => this.props.history.push(`brewery/${item.breweryId}`)}>
-                        <h2>{item.name}</h2>
+                    <div key={item.id}>
+                       <Link to={`brewery/${item.breweryId}`}> <h4>{item.brewery.name}</h4></Link>
                     </div>
                 ))}
             </div>    

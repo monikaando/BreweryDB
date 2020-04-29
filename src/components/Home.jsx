@@ -1,16 +1,11 @@
-import React from 'react'
-import '../styles/Home.scss'
+import React from 'react';
+import '../styles/Navbar.scss';
 
 export default function Home() {
     return (
         <div className="homepage">
-            <div className="home-buttons">
-                <button>Breweries per country</button>
-                <button>Find a beer</button>
-            </div>
-            <div className="results">
-                <h1>Result:</h1>
-            </div>
+         <h1>Welcome to the Tap App.</h1>
+         <h2>Click a button to see the result.</h2>
         </div>
     )
 }

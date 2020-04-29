@@ -1,0 +1,30 @@
+.nav-buttons {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   width: 55%;
+   .button {
+      text-decoration: none;
+      padding: 2%;
+      margin: 2% 0 3% 0;
+      width: 70%;
+      background-color:#ffb700ec;
+      border-color: rgba(255, 211, 99, 0.773);
+      border-radius: 5px;
+      color:#240603b9;
+      font-size: 1em;
+      font-weight: 700;
+   }
+   img {
+      width: 20%;
+      margin-bottom:1%;
+   }
+}
+.results {
+   display: flex;
+   width: 80%;
+   background-color: rgba(255, 255, 255, 0.719);
+   height: 85vh;
+   border-radius: 5px;
+}
