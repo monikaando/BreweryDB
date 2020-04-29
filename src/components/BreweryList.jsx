@@ -18,7 +18,7 @@ class BreweryList extends Component {
     getBreweriesList(){
         axios({
             method: "GET",
-            url: "http://localhost:3000/v2/locations/?key=659d5c6b8f3d2447f090119e48202fdb"
+            url: "http://localhost:3001/locations/?countryIsoCode=US&order=breweryName&key=659d5c6b8f3d2447f090119e48202fdb"
         })
         .then(res => {
             this.setState({
@@ -34,20 +34,15 @@ class BreweryList extends Component {
     render() {
         return (
             <div>
-            <div>
-                <button onClick={this.getBreweriesList}>get brewery list</button>
-            </div>
-            {this.state.breweries.map((brewery, i) => (
                 <div>
-                <div key={i}></div>
-                <div>
-                    <h2>{brewery.name}</h2>
+                    <button onClick={this.getBreweriesList}>get brewery list</button>
                 </div>
-                 </div>
-            ))}
-            </div>
-           
-      
+                {this.state.breweries.map((item) => (
+                    <div key={item.id}>
+                        <h2>{item.brewery.name}</h2>
+                    </div>
+                ))}
+            </div>    
    )
 }
 }
