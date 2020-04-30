@@ -10,9 +10,11 @@ function App() {
   return (
     <div className="App">
       <Navbar/> 
-      <div className="page">         
-       <Route exact path="/" component={Home}></Route> 
-       <Route exact path="/brewery" component={BreweryList}></Route>
+      <div className="scrollbar" id="style-2">
+        <div className="force-overflow">         
+        <Route exact path="/" component={Home}></Route> 
+        <Route exact path="/brewery" component={BreweryList}></Route>
+        </div>
       </div>
       <Footer/>
     </div>
