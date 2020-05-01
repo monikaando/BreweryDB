@@ -21,13 +21,30 @@ class BreweryList extends Component {
         this.handleInputChange=this.handleInputChange.bind(this);
     }
     componentDidMount() {
-        this.getBreweriesList();
-        this.getCountryCodeList(); 
+        this.getCountryCodeList();
+        // this.getBreweriesList();
+         
+    }
+    getCountryCodeList(){
+        axios({
+            method: "GET",
+            url: "http://localhost:3000/locations/?key=659d5c6b8f3d2447f090119e48202fdb"
+        })
+        .then(res => {
+            let code = [...new Set(res.data.data.map(item => item.countryIsoCode))]
+            this.setState({
+                countryCode: code
+            })
+            console.log('All unique coutry codes in Array: '+ this.state.countryCode)
+        })
+        .catch((err)=> {
+                console.log( "Error")
+        })
     }
     getBreweriesList(){
         axios({
             method: "GET",
-            url: `http://localhost:3000/locations/?countryIsoCode${this.state.selectedCode}&order=breweryName&key=659d5c6b8f3d2447f090119e48202fdb`
+            url: `http://localhost:3000/locations/?countryIsoCode=${this.state.select.selectedCode}&order=breweryName&key=659d5c6b8f3d2447f090119e48202fdb`
         })
         .then(res => {
             this.setState({
@@ -47,22 +64,7 @@ class BreweryList extends Component {
             breweries:unique
         })
     }
-    getCountryCodeList(){
-        axios({
-            method: "GET",
-            url: "http://localhost:3000/locations/?key=659d5c6b8f3d2447f090119e48202fdb"
-        })
-        .then(res => {
-            let code = [...new Set(res.data.data.map(item => item.countryIsoCode))]
-            this.setState({
-                countryCode: code
-            })
-            console.log('All unique coutry codes in Array: '+ this.state.countryCode)
-        })
-        .catch((err)=> {
-                console.log( "Error")
-        })
-    }
+    
     handleInputChange(e) {
         e.preventDefault();
         let updatedCountryCode = this.state.select;
@@ -70,9 +72,9 @@ class BreweryList extends Component {
         this.setState({
             select:updatedCountryCode
         })
+        this.getBreweriesList();
         console.log(this.state.select.selectedCode)
-        this.props.history.push(`/breweries/`);
-
+        // this.props.history.push(`/breweries`);
     }
 
     render() {
