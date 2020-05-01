@@ -83,7 +83,7 @@ class BreweryList extends Component {
 
     render() {
         let BreweriesCountry;
-        if(!this.state.select.selectedCode){
+        if(!this.state.select.selectedCode || this.state.select.selectedCode===""){
             BreweriesCountry = <h2>Breweries from all countries</h2>
             this.getBreweriesList();
         }
@@ -97,7 +97,8 @@ class BreweryList extends Component {
             <div>
             <h1>Select an option</h1>
             <select
-                multiple={true} type="select-multiple"
+                multiple={true}
+                type="select-multiple"
                 aria-label="country-code" 
                 name="selectedCode" 
                 value={this.state.select.selectedCode} 
