@@ -6,6 +6,7 @@ import _ from "lodash";
 
 
 class BreweryList extends Component {
+     _isMounted = false;
     constructor(props) {
         super(props);
         this.state = {
@@ -21,10 +22,16 @@ class BreweryList extends Component {
         this.handleInputChange=this.handleInputChange.bind(this);
     }
     componentDidMount() {
+        this._isMounted = true;
         this.getCountryCodeList();
-        // this.getBreweriesList();
-         
+        this.getBreweriesList()
     }
+  componentWillUnmount() {
+    // fix Warning: Can't perform a React state update on an unmounted component
+    this.setState = (state,callback)=>{
+        return;
+    };
+}
     getCountryCodeList(){
         axios({
             method: "GET",
@@ -35,7 +42,6 @@ class BreweryList extends Component {
             this.setState({
                 countryCode: code
             })
-            console.log('All unique coutry codes in Array: '+ this.state.countryCode)
         })
         .catch((err)=> {
                 console.log( "Error")
@@ -73,14 +79,23 @@ class BreweryList extends Component {
             select:updatedCountryCode
         })
         this.getBreweriesList();
-        console.log(this.state.select.selectedCode)
-        // this.props.history.push(`/breweries`);
     }
 
     render() {
+        let BreweriesCountry;
+        if(!this.state.select.selectedCode){
+            BreweriesCountry = <h2>Breweries from all countries</h2>
+            this.getBreweriesList();
+        }
+        
+        else if(this.state.select.selectedCode){
+            BreweriesCountry = <h2>Breweries from {this.state.select.selectedCode}</h2>
+            this.getCountryCodeList();
+        }
         return (
             <div>
             <div>
+            <h1>Select an option</h1>
             <select
                 multiple={true} type="select-multiple"
                 aria-label="country-code" 
@@ -88,7 +103,7 @@ class BreweryList extends Component {
                 value={this.state.select.selectedCode} 
                 onChange={this.handleInputChange}
             >
-                <option value="">Choose a country</option>
+                <option value="" defaultValue>All breweries</option>
                 {this.state.countryCode.map(item => (
                   <option name="selectedCode" key={item} value={item}>
                     {item}
@@ -96,7 +111,7 @@ class BreweryList extends Component {
                 ))}
               </select>
             </div>
-            <h2>Breweries from {this.state.select.selectedCode}</h2>
+            {BreweriesCountry}
                 {this.state.breweries.map((item) => (
                     <div key={item.id}>
                        <Link to={`brewery/${item.breweryId}`}> <h4>{item.brewery.name}</h4></Link>
