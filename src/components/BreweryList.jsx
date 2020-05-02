@@ -8,10 +8,11 @@ import _ from "lodash";
 class BreweryList extends Component {
      _isMounted = false;
     constructor(props) {
+        debugger
         super(props);
         this.state = {
              select: {
-                selectedCode:[]
+                selectedCode:""
             },
             breweries:[],
             countryCode:[]
@@ -88,7 +89,7 @@ class BreweryList extends Component {
 
     render() {
         let BreweriesCountry;
-        if(!this.state.select.selectedCode || this.state.select.selectedCode==="" || !this.state.select.countryCode){
+        if(!this.state.select.selectedCode){
             BreweriesCountry = <h2>Breweries from all countries</h2>
         }
 
