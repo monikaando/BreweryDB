@@ -93,7 +93,7 @@ class BreweryList extends Component {
             BreweriesCountry = <h2>Breweries from all countries</h2>
         }
 
-        else if(this.state.select.selectedCode){
+        else{
             BreweriesCountry = <h2>Breweries from {this.state.select.selectedCode}</h2>
         }
         return (
