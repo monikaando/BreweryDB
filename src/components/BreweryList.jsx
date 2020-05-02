@@ -44,7 +44,7 @@ class BreweryList extends Component {
             this.setState({
                 countryCode: code
             })
-            console.log(this.state.countryCode)
+            console.log(this.state.countryCode.toString())
         })
         .catch((err)=> {
                 console.log( "Error")
@@ -100,11 +100,9 @@ class BreweryList extends Component {
             <h1>Select an option</h1>
             <div className="select">
             <select
-                multiple={true}
-                type="select-multiple"
                 aria-label="country-code" 
                 name="selectedCode" 
-                value={this.state.select.selectedCode} 
+                value={this.state.select.selectedCode.toString()} 
                 onChange={this.handleInputChange}
             >
                 <option value="" defaultValue>All breweries</option>
