@@ -22,15 +22,17 @@ class BreweryList extends Component {
         this.handleInputChange=this.handleInputChange.bind(this);
     }
     componentDidMount() {
-        this._isMounted = true;
         this.getCountryCodeList();
-        this.getBreweriesList()
+        this.getBreweriesList();
+        this._isMounted = true;
+       
     }
   componentWillUnmount() {
     // fix Warning: Can't perform a React state update on an unmounted component
     this.setState = (state,callback)=>{
         return;
     };
+
 }
     getCountryCodeList(){
         axios({
@@ -42,6 +44,7 @@ class BreweryList extends Component {
             this.setState({
                 countryCode: code
             })
+            console.log(this.state.countryCode)
         })
         .catch((err)=> {
                 console.log( "Error")
@@ -57,7 +60,9 @@ class BreweryList extends Component {
                 breweries: res.data.data
             })
             this.removeDuplicates()  
+            console.log(this.state.breweries)
         })
+        
         .catch((err)=> {
                 console.log( "Error")
         })
@@ -83,19 +88,17 @@ class BreweryList extends Component {
 
     render() {
         let BreweriesCountry;
-        if(!this.state.select.selectedCode || this.state.select.selectedCode===""){
+        if(!this.state.select.selectedCode || this.state.select.selectedCode==="" || !this.state.select.countryCode){
             BreweriesCountry = <h2>Breweries from all countries</h2>
-            this.getBreweriesList();
         }
-        
+
         else if(this.state.select.selectedCode){
             BreweriesCountry = <h2>Breweries from {this.state.select.selectedCode}</h2>
-            this.getCountryCodeList();
         }
         return (
             <div>
-            <div>
             <h1>Select an option</h1>
+            <div className="select">
             <select
                 multiple={true}
                 type="select-multiple"
