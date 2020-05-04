@@ -17,7 +17,7 @@ class SingleBrewery extends Component {
     componentDidMount() {
         this.getSingleBrewery();
     }
-      getSingleBrewery(){
+    getSingleBrewery(){
         axios({
             method: "GET",
             url: `http://localhost:3000/brewery/${this.props.match.params.id}/?key=659d5c6b8f3d2447f090119e48202fdb`
@@ -33,7 +33,7 @@ class SingleBrewery extends Component {
                 console.log( "Error")
         })
     }
-      getAllBeers(){
+    getAllBeers(){
         axios({
             method: "GET",
             url: `http://localhost:3000/brewery/${this.props.match.params.id}/beers/?key=659d5c6b8f3d2447f090119e48202fdb`
@@ -61,35 +61,35 @@ class SingleBrewery extends Component {
             Beers=<h4>The brewery produces {this.state.beers.length} beers: </h4>
         }
                            
-                 
-        if(this.state.brewery && this.state.beers) {
+        let brew = this.state.brewery         
+        if(brew && this.state.beers) {
         return (
             <div>
                 <div>
-                    <h1>{this.state.brewery.name}</h1>
-                    {this.state.brewery.images ? (
+                    <h1>{brew.name}</h1>
+                    {brew.images ? (
                         <div>
-                            <img src={this.state.brewery.images.squareMedium} alt="brewery-logo" />
+                            <img src={brew.images.squareMedium} alt="brewery-logo" />
                         </div>
                     ) : (
                         <p></p>   
                     )}
-                    {this.state.brewery.established ? (
-                    <p>Established: {this.state.brewery.established}</p>
+                    {brew.established ? (
+                        <p>Established: {brew.established}</p>
                     ) : (
                         <p></p>
                     )}
                     
-                    <a href={this.state.brewery.website} rel="noopener noreferrer" target="_blank">
-                        <p>{this.state.brewery.website}</p>
+                    <a href={brew.website} rel="noopener noreferrer" target="_blank">
+                        <p>{brew.website}</p>
                     </a>
-                    <p>{this.state.brewery.description}</p>
+                    <p>{brew.description}</p>
                 </div>
                 <div>
                     {Beers}
                     {this.state.beers.map((item)=>(
                         <div key={item.id}>
-                       <Link to={`beer/${item.id}`}> <h4>{item.name}</h4></Link>
+                       <Link to={`/beer/${item.id}`}> <h4>{item.name}</h4></Link>
                     </div>
                     ))}
                 </div>
