@@ -8,7 +8,6 @@ import _ from "lodash";
 class BreweryList extends Component {
      _isMounted = false;
     constructor(props) {
-        debugger
         super(props);
         this.state = {
              select: {
@@ -92,8 +91,7 @@ class BreweryList extends Component {
         if(!this.state.select.selectedCode){
             BreweriesCountry = <h2>Breweries from all countries</h2>
         }
-
-        else{
+        else {
             BreweriesCountry = <h2>Breweries from {this.state.select.selectedCode}</h2>
         }
         return (
@@ -117,7 +115,7 @@ class BreweryList extends Component {
             {BreweriesCountry}
                 {this.state.breweries.map((item) => (
                     <div key={item.id}>
-                       <Link to={`brewery/${item.breweryId}`}> <h4>{item.brewery.name}</h4></Link>
+                       <Link to={`breweries/brewery/${item.breweryId}`}> <h4>{item.brewery.name}</h4></Link>
                     </div>
                 ))}
             </div>    
