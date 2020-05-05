@@ -20,19 +20,21 @@
     .force-overflow {
       min-height: 450px;
     }
+    @media screen 
+    and (min-width: 300px)
+    and (max-width: 900px) { 
+          width:95%
+    }
+  }
+  #style-2::-webkit-scrollbar-track {
+      border-radius: 10px;
   }
 
-
-#style-2::-webkit-scrollbar-track {
-    border-radius: 10px;
-}
-
-#style-2::-webkit-scrollbar {
-    width: 12px;
-}
-
-#style-2::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: #ffb700ec;
-}
+  #style-2::-webkit-scrollbar {
+      width: 12px;
+  }
+  #style-2::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: #ffb700ec;
+  }
 }

@@ -39,26 +39,26 @@ class SingleBeer extends Component {
         return (
             <div>
                 <div className="beer-img-details">
+                        <h1>{beer.name}</h1>  
+                            {beer.style ? (
+                                <div>
+                                    <p><b>Style: </b>{beer.style.name}</p>
+                                    <p><b>Brewed by:</b>&nbsp;
+                                    <Link to={`/breweries/brewery/${beer.breweries[0].id}`}>{beer.breweries[0].name}</Link> </p>
+                                    <div className="abv-ibu">
+                                        <p><b>ABV:</b> {beer.abv}%</p>
+                                        <p><b>IBU:</b> {beer.style.ibuMin} - {beer.style.ibuMax}</p>  
+                                    </div>         
+                                </div>
+                            ):(
+                                <h2>Loading...</h2>
+                            )}
                     <div className="beer-img">
                         {beer.labels ? (      
                             <img src={beer.labels.medium} alt="beer-label"/>
                         ) : (
                             <p></p>
                         )}  
-                    </div> 
-                    <div className="beer-details">
-                        <h1>{beer.name}</h1>  
-                            {beer.style ? (
-                                <div>
-                                    <p><b>Style: </b>{beer.style.shortName}</p>
-                                    <p><b>Brewed by:</b>&nbsp;
-                                    <Link to={`/breweries/brewery/${beer.breweries[0].id}`}>{beer.breweries[0].name}</Link> </p>
-                                    <p><b>ABV:</b> {beer.abv}%</p>
-                                    <p><b>IBU:</b> {beer.style.ibuMin} - {beer.style.ibuMax}</p>           
-                            </div>
-                            ):(
-                                <h2>Loading...</h2>
-                            )}
                     </div> 
                 </div>
 

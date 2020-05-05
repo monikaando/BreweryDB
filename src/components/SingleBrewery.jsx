@@ -71,7 +71,7 @@ class SingleBrewery extends Component {
                         <h1>{brew.name}</h1>
                     </a>
                     {brew.established ? (
-                                    <h4><b>Established: {brew.established}</b></h4>
+                                    <h5><b>Established: {brew.established}</b></h5>
                                 ) : (
                                     <p></p>
                                 )}
