@@ -38,30 +38,37 @@ class SingleBeer extends Component {
         if(beer) {
         return (
             <div>
-                <h1>{beer.name}</h1>
-                {beer.labels ? (
-                    <div>
-                        <img src={beer.labels.medium} alt="beer-label"/>
-                    </div>
-                ) : (
-                    <p></p>
-                )}      
+                <div className="beer-img-details">
+                    <div className="beer-img">
+                        {beer.labels ? (      
+                            <img src={beer.labels.medium} alt="beer-label"/>
+                        ) : (
+                            <p></p>
+                        )}  
+                    </div> 
+                    <div className="beer-details">
+                        <h1>{beer.name}</h1>  
+                            {beer.style ? (
+                                <div>
+                                    <p><b>Style: </b>{beer.style.shortName}</p>
+                                    <p><b>Brewed by:</b>&nbsp;
+                                    <Link to={`/breweries/brewery/${beer.breweries[0].id}`}>{beer.breweries[0].name}</Link> </p>
+                                    <p><b>ABV:</b> {beer.abv}%</p>
+                                    <p><b>IBU:</b> {beer.style.ibuMin} - {beer.style.ibuMax}</p>           
+                            </div>
+                            ):(
+                                <h2>Loading...</h2>
+                            )}
+                    </div> 
+                </div>
+
+                <div className="beer-description">
                     {beer.style ? (
-                        <div>
-                            <p>Style: {beer.style.shortName}</p>
-                            <p>Brewed by: </p>
-                            <Link to={`/breweries/brewery/${beer.breweries[0].id}`}>{beer.breweries[0].name}</Link>
-                            <div>
-                                <Link to="" title="Alcohol By Volume" className="tooltip">ABV: {beer.abv}%</Link>
-                            </div>
-                            <div>
-                                <Link to="" title="International Bittering Unit" className="tooltip">IBU: {beer.style.ibuMin} - {beer.style.ibuMax}</Link>
-                            </div>
-                            <p>Description: {beer.style.description}</p>
-                        </div>
+                            <p>{beer.style.description}</p>
                     ):(
                         <p></p>
                     )}
+                </div>
             </div>
         )
         } else{

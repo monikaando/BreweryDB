@@ -65,7 +65,7 @@ class SingleBrewery extends Component {
         let brew = this.state.brewery         
         if(brew && this.state.beers) {
         return (
-            <div className="single-beer-page">
+            <div className="single-brew-page">
                 <div>
                     <a href={brew.website} rel="noopener noreferrer" target="_blank">
                         <h1>{brew.name}</h1>
@@ -75,8 +75,8 @@ class SingleBrewery extends Component {
                                 ) : (
                                     <p></p>
                                 )}
-                    <div className="beer-img-details">
-                        <div className="beer-img">
+                    <div className="brew-img-details">
+                        <div className="brew-img">
                             {brew.images ? (
                                 <div>
                                 <a href={brew.website} rel="noopener noreferrer" target="_blank">
@@ -87,7 +87,7 @@ class SingleBrewery extends Component {
                                 <p></p>   
                             )}
                         </div>
-                        <div className="beer-details">
+                        <div className="brew-description">
                             <p>{brew.description}</p>
                         </div>
                     </div>
