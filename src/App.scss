@@ -23,7 +23,8 @@
     @media screen 
     and (min-width: 300px)
     and (max-width: 900px) { 
-          width:95%
+          width: 95%;
+          margin-left:2px;
     }
   }
   #style-2::-webkit-scrollbar-track {
