@@ -4,6 +4,21 @@
    justify-content: space-between;
    align-items: center;
    width: 55%;
+   @media screen 
+   and (min-width: 300px)
+   and (max-width: 650px) { 
+      width:95%
+   }
+   @media screen 
+   and (min-width: 651px)
+   and (max-width: 900px) { 
+         width:95%
+   }
+   @media screen 
+   and (min-width: 901px)
+   and (max-width: 1100px) {
+      width:70%
+   }
    .button {
       text-decoration: none;
       padding: 2%;
@@ -15,7 +30,13 @@
       color:#240603b9;
       font-size: 1em;
       font-weight: 700;
-   }
+      @media screen 
+      and (min-width: 300px)
+      and (max-width: 650px) { 
+            width: 100%;
+            font-size: 0.8em;
+         }
+    }
    img {
       width: 20%;
       margin-bottom:1%;
