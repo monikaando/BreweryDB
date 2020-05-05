@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import '../styles/SingleBrewery.scss';
 import {Link} from "react-router-dom";
-import axios from 'axios';;
+import axios from 'axios';
 
 
 class SingleBrewery extends Component {
@@ -52,54 +53,63 @@ class SingleBrewery extends Component {
     render () {
         let Beers;
         if(this.state.beers.length === 0) {
-            Beers=<h4>Loading...</h4>
+            Beers=<h2>Loading...</h2>
         } 
         else if(this.state.beers.length === 1){
-            Beers=<h4>The brewery produces {this.state.beers.length} beer: </h4>
+            Beers=<h2>The brewery produces <u>{this.state.beers.length}</u> beer: </h2>
         } 
         else{
-            Beers=<h4>The brewery produces {this.state.beers.length} beers: </h4>
+            Beers=<h2>The brewery produces <u>{this.state.beers.length}</u> beers: </h2>
         }
                            
         let brew = this.state.brewery         
         if(brew && this.state.beers) {
         return (
-            <div>
+            <div className="single-beer-page">
                 <div>
-                    <h1>{brew.name}</h1>
-                    {brew.images ? (
-                        <div>
-                            <img src={brew.images.squareMedium} alt="brewery-logo" />
-                        </div>
-                    ) : (
-                        <p></p>   
-                    )}
-                    {brew.established ? (
-                        <p>Established: {brew.established}</p>
-                    ) : (
-                        <p></p>
-                    )}
-                    
                     <a href={brew.website} rel="noopener noreferrer" target="_blank">
-                        <p>{brew.website}</p>
+                        <h1>{brew.name}</h1>
                     </a>
-                    <p>{brew.description}</p>
-                </div>
-                <div>
-                    {Beers}
-                    {this.state.beers.map((item)=>(
-                        <div key={item.id}>
-                       <Link to={`/beer/${item.id}`}> <h4>{item.name}</h4></Link>
+                    {brew.established ? (
+                                    <h4><b>Established: {brew.established}</b></h4>
+                                ) : (
+                                    <p></p>
+                                )}
+                    <div className="beer-img-details">
+                        <div className="beer-img">
+                            {brew.images ? (
+                                <div>
+                                <a href={brew.website} rel="noopener noreferrer" target="_blank">
+                                    <img src={brew.images.squareMedium} alt="brewery-logo" />
+                                </a>
+                                </div>
+                            ) : (
+                                <p></p>   
+                            )}
+                        </div>
+                        <div className="beer-details">
+                            <p>{brew.description}</p>
+                        </div>
                     </div>
-                    ))}
                 </div>
-
+                <div className="beers">
+                    <div className="beersCounter">
+                        {Beers}
+                    </div>
+                    <div className="beers-box">
+                        {this.state.beers.map((item)=>(
+                        <div key={item.id}>
+                            <Link to={`/beer/${item.id}`}> <h5>{item.name}</h5></Link>
+                        </div>
+                        ))}
+                    </div>
+                </div>
             </div>
         )
         } else{
         return (
             <div>
-                <p>Loading...</p>
+                <h2>Loading...</h2>
             </div>
         )
     }
