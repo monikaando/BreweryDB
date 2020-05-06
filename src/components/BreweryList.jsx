@@ -95,29 +95,30 @@ class BreweryList extends Component {
             BreweriesCountry = <h2>Breweries from {this.state.select.selectedCode}</h2>
         }
         return (
-            <div>
-            <h1>Select an option</h1>
-            <div className="select">
-            <select
-                aria-label="country-code" 
-                name="selectedCode" 
-                value={this.state.select.selectedCode.toString()} 
-                onChange={this.handleInputChange}
-            >
-                <option value="" defaultValue>All breweries</option>
-                {this.state.countryCode.map(item => (
-                  <option name="selectedCode" key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </div>
-            {BreweriesCountry}
-                {this.state.breweries.map((item) => (
-                    <div key={item.id}>
-                       <Link to={`breweries/brewery/${item.breweryId}`}> <h4>{item.brewery.name}</h4></Link>
-                    </div>
-                ))}
+            <div className="brewery-list-page">
+                <h1>Find a brewery</h1>
+                <h3>Select a country from the list</h3>
+                <div className="select">
+                    <select
+                        aria-label="country-code" 
+                        name="selectedCode" 
+                        value={this.state.select.selectedCode.toString()} 
+                        onChange={this.handleInputChange}
+                    >
+                        <option value="" defaultValue>All countries</option>
+                        {this.state.countryCode.map(item => (
+                        <option name="selectedCode" key={item} value={item}>
+                            {item}
+                        </option>
+                        ))}
+                    </select>
+                </div>
+                {BreweriesCountry}
+                    {this.state.breweries.map((item) => (
+                        <div key={item.id}>
+                        <Link to={`breweries/brewery/${item.breweryId}`}> <h4>{item.brewery.name}</h4></Link>
+                        </div>
+                    ))}
             </div>    
    )
 }

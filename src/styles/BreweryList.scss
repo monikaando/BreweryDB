@@ -1,5 +1,18 @@
+.brewery-list-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 5%;
 a {
     text-decoration: none;
+}
+h2 {
+    margin-top: 15%;
+    font-size: 1.7em;
+}
+h3 {
+    margin:0 0 8%;
 }
 h4 {
     font-size: 1.1em;
@@ -55,5 +68,5 @@ select {
   /* Transition */
   .select:hover::after {
     color: #f39c12;
-  }
-  
+  } 
+}

@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import BreweryList from "./components/BreweryList";
+import SearchBeers from "./components/SearchBeers";
 import SingleBrewery from "./components/SingleBrewery";
 import SingleBeer from "./components/SingleBeer";
 import {Route} from "react-router-dom";
@@ -16,6 +17,7 @@ function App() {
         <div className="force-overflow">         
         <Route exact path="/" component={Home}></Route> 
         <Route exact path="/brewery" component={BreweryList}></Route>
+        <Route exact path="/beers" component={SearchBeers}></Route>
         <Route exact path="/breweries/brewery/:id" component={SingleBrewery}></Route>
         <Route exact path="/beer/:id" component={SingleBeer}></Route>
         </div>
