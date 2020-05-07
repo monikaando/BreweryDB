@@ -54,7 +54,7 @@ getBeersByName(){
                             <Link to={`/beer/${item.id}`}> 
                             <h5>{item.name}</h5></Link>
                             ):(
-                            <h4> </h4>  
+                            <p></p>
                             )}
                         </div>
                     ))}
