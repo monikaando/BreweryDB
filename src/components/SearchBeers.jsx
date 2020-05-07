@@ -17,7 +17,7 @@ export default class SearchBeers extends Component {
 
 }
 beerNameInputHandler(e) {
-    let inputValue = e.target.value;
+    let inputValue = e.target.value.toLowerCase();
     this.setState({
         name: inputValue
     }) 
@@ -32,13 +32,13 @@ getBeersByName(){
                 beersByName: res.data.data
             })
             console.log(this.state.beersByName)
+
         })
         .catch((err)=> {
                 console.log( "Error")
         })
+        debugger
     }
-
-
     render() {
         return (
             <div className="search-page">
@@ -47,10 +47,15 @@ getBeersByName(){
                     <input type="text" name="search" placeholder="search by name" value={this.state.name} onChange={this.beerNameInputHandler}/>
                     <button onClick={this.getBeersByName}>Search Name</button>
                 </div>
-                <div className="beers-box">
+                    <div className="beers-box">
                     {this.state.beersByName.map((item) => (
                         <div key={item.id}>
-                            <Link to={`/beer/${item.id}`}> <h5>{item.name}</h5></Link>
+                        {((item.name).toLowerCase()).includes(this.state.name) ?(
+                            <Link to={`/beer/${item.id}`}> 
+                            <h5>{item.name}</h5></Link>
+                            ):(
+                            <h4> </h4>  
+                            )}
                         </div>
                     ))}
                 </div>
