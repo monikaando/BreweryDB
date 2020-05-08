@@ -79,6 +79,21 @@
             color: #4b3535;
           } 
     }
+    .buttons-next-clear{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-bottom: 4%;
+      button {
+        margin:0 5%;
+        width:170px;
+        height: 25px;
+        background-color: rgba(32, 13, 13, 0.774);
+        color: #ffffff;
+        font-weight: bold;
+        border-radius: 5px;
+      }
+    }
     .beers-box {
         column-count:2;
         -moz-column-count:2;

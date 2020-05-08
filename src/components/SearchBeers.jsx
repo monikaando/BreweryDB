@@ -18,7 +18,8 @@ export default class SearchBeers extends Component {
         beersByType:[],
         beersByCountry:[],
         countryCode:[], 
-        page:1
+        page:1,
+        numberOfPages:0
 }
     this.beerNameInputHandler = this.beerNameInputHandler.bind(this);
     this.getBeersByName = this.getBeersByName.bind(this);
@@ -30,9 +31,10 @@ export default class SearchBeers extends Component {
     this.clearSearch = this.clearSearch.bind(this);
     this.getNextPage = this.getNextPage.bind(this);
     this.getAllBeersName = this.getAllBeersName.bind(this);
+    this.clearInputFields = this.clearInputFields.bind(this);
 }
 componentDidMount() {
-        this.getCountryCodeList();
+    this.getCountryCodeList();
 }
 beerNameInputHandler(e) {
     let inputValue = e.target.value;
@@ -49,20 +51,29 @@ beerTypeInputHandler(e){
     this.clearSearch()
 }
 handleBeerCountryChange(e){
-        e.preventDefault();
-        let updatedCountryCode = this.state.select;
-        updatedCountryCode[e.target.name] = e.target.value;
-        this.setState({
-            select:updatedCountryCode
-        })
-        this.getBeersByCountry();
-        this.clearSearch()
+    e.preventDefault();
+    let updatedCountryCode = this.state.select;
+    updatedCountryCode[e.target.name] = e.target.value;
+    this.setState({
+        select:updatedCountryCode
+    })
+    this.getBeersByCountry();
+    this.clearSearch()
 }
 getNextPage(){
     this.setState({
         page: this.state.page + 1
         })
-    this.getBeersByName()
+    if (this.state.name.length>0){
+        this.getBeersByName()
+    }
+    else if(!this.state.length>0) (
+        this.getBeersByType()
+    )
+    else if(this.state.select.selectedCode.length>0){
+        this.getBeersByCountry()
+    }
+
 }
 getAllBeersName(){
     this.getBeersByName()
@@ -78,6 +89,8 @@ getBeersByName(){
         .then(res => {
             this.setState({
                 beersByName: res.data.data,
+                numberOfPages:res.data.numberOfPages
+
            })
             console.log(this.state.beersByName[0])
             console.log(res.data.data.length)
@@ -95,11 +108,9 @@ getBeersByType(){
         .then(res => {
             this.setState({
                 beersByType: res.data.data,
-                page: this.state.page + 1
+                numberOfPages:res.data.numberOfPages
             })
-            console.log(this.state.beersByType)
-            console.log(this.state.beersByType[0].style.name)
-            console.log(this.state.type)
+            console.log(this.data.numberOfPages)
 
         })
         .catch((err)=> {
@@ -143,7 +154,21 @@ clearSearch(){
     this.setState({
         beersByName:[],
         beersByType:[],
-        beersByCountry:[]
+        beersByCountry:[],
+        countryCode:[], 
+})
+}
+clearInputFields(){
+      this.setState({
+        select: {
+                selectedCode:"" 
+            },
+        name:"", 
+        type:"",
+        beersByName:[],
+        beersByType:[],
+        beersByCountry:[],
+        countryCode:[], 
 })
 }
 removeDuplicates() {
@@ -158,31 +183,36 @@ removeDuplicates() {
         return (
             <div className="search-page">
                 <h2>Search beers by name, type or country</h2>
-                <div className="search-boxes">
-                    <div>
-                        <input type="text" name="beername" placeholder="search by name" value={this.state.name} onChange={this.beerNameInputHandler}/>
-                        <button onClick={this.getAllBeersName}>Search</button>
+                <div>
+                    <div className="buttons-next-clear">
+                        <button onClick={this.clearInputFields}>Clear imput fields</button>
+                        <button onClick={this.getNextPage}>Next page </button>
                     </div>
-                    <div>
-                        <input type="text" name="beertype" placeholder="search by type" value={this.state.type} onChange={this.beerTypeInputHandler}/>
-                        <button onClick={this.getBeersByType}>Search</button>
-                    </div>                  
-                  <div className="select">
-                    <select
-                        aria-label="country-code" 
-                        name="selectedCode" 
-                        value={this.state.select.selectedCode.toString()} 
-                        onChange={this.handleBeerCountryChange}
-                        >
-                        <option value="" defaultValue>All countries</option>
-                        {this.state.countryCode.map(item => (
-                        <option name="selectedCode" key={item} value={item}>
-                            {item}
-                        </option>
-                        ))}
-                    </select>
-                  </div>
-                  <button onClick={this.getNextPage}>Next page</button>
+                    <div className="search-boxes">
+                        <div>
+                            <input type="text" name="beername" placeholder="search by name" value={this.state.name} onChange={this.beerNameInputHandler}/>
+                            <button onClick={this.getAllBeersName}>Search</button>
+                        </div>
+                        <div>
+                            <input type="text" name="beertype" placeholder="search by type" value={this.state.type} onChange={this.beerTypeInputHandler}/>
+                            <button onClick={this.getBeersByType}>Search</button>
+                        </div>                  
+                        <div className="select">
+                            <select
+                                aria-label="country-code" 
+                                name="selectedCode" 
+                                value={this.state.select.selectedCode.toString()} 
+                                onChange={this.handleBeerCountryChange}
+                                >
+                                <option value="" defaultValue>All countries</option>
+                                {this.state.countryCode.map(item => (
+                                <option name="selectedCode" key={item} value={item}>
+                                    {item}
+                                </option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div className="beers-box">
                 {this.state.beersByName ? (
@@ -203,7 +233,6 @@ removeDuplicates() {
                 ):(
                     <h4>Nothing here, try another name</h4>
                 )}
-
                 
                 {this.state.beersByType ? (
                     <div>
@@ -211,7 +240,7 @@ removeDuplicates() {
                         <div key={item.id}>
                         {item.style ? (
                         <div>
-                            {((item.style.name).toLowerCase()).includes(this.state.type) ? (
+                            {((item.style.name).toLowerCase()).includes((this.state.type).toLowerCase()) ? (
                                 <Link to={`/beer/${item.id}`}> 
                                 <h5>{item.name}</h5>
                                 </Link>
@@ -228,7 +257,6 @@ removeDuplicates() {
                 ):(
                     <div>
                         <h4>Nothing here, try another type</h4>
-
                     </div>
                 )}    
                      {this.state.beersByCountry.map((item) => (
