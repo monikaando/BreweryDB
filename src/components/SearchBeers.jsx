@@ -145,9 +145,7 @@ getBeersByCountry(){
                     <div>
                         <input type="text" name="beertype" placeholder="search by type" value={this.state.type} onChange={this.beerTypeInputHandler}/>
                         <button onClick={this.getBeersByType}>Search</button>
-                    </div>
-                  
-                  
+                    </div>                  
                   <div className="select">
                     <select
                         aria-label="country-code" 
@@ -195,9 +193,6 @@ getBeersByCountry(){
                         )}
                         </div>
                     ))}
-
-
-
                      {this.state.beersByCountry.map((item) => (
                         <div key={item.id}>
                         {((item.breweries[0].locations[0].countryIsoCode).includes(this.state.select.selectedCode)) ? (

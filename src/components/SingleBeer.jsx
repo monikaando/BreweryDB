@@ -44,7 +44,7 @@ class SingleBeer extends Component {
                                 <div>
                                     <p><b>Style: </b>{beer.style.name}</p>
                                     <p><b>Brewed by:</b>&nbsp;
-                                    <Link to={`/breweries/brewery/${beer.breweries[0].id}`}>{beer.breweries[0].name}</Link> </p>
+                                    <Link to={`/breweries/brewery/${beer.breweries[0].id}`}>{beer.breweries[0].name}</Link> in {beer.breweries[0].locations[0].country.displayName}</p>
                                     <div className="abv-ibu">
                                         <p><b>ABV:</b> {beer.abv}%</p>
                                         <p><b>IBU:</b> {beer.style.ibuMin} - {beer.style.ibuMax}</p>  
