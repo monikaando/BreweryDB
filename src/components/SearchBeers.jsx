@@ -28,7 +28,7 @@ export default class SearchBeers extends Component {
     this.getBeersByCountry = this.getBeersByCountry.bind(this);
     this.getCountryCodeList=this.getCountryCodeList.bind(this);
 
-    // this.increment = this.increment.bind(this);
+    this.increment = this.increment.bind(this);
 }
 componentDidMount() {
         this.getCountryCodeList();
@@ -74,19 +74,22 @@ getBeersByName(){
                 console.log( "Error")
         })
     }
-// increment(){
-//     this.setState((prevState) => {
-//     return {page: prevState.page + 1}
-//   });
-//   }
+increment(){
+    this.setState((prevState) => {
+    return {page: prevState.page + 1}
+  });
+  }
 getAllBeersByName(){
     this.getBeersByName();
-
+    this.increment();
+    this.getBeersByName();
+    this.increment();
+    this.getBeersByName();
 }
 getBeersByType(){
         axios({
             method: "GET",
-            url: `http://localhost:3000/search?key=659d5c6b8f3d2447f090119e48202fdb&&p=${this.state.page}&type=beer&q=${this.state.type}`
+            url: `http://localhost:3000/search?key=659d5c6b8f3d2447f090119e48202fdb&p=${this.state.page}&type=beer&q=${this.state.type}`
         })
         .then(res => {
             this.setState({
@@ -161,9 +164,7 @@ getBeersByCountry(){
                         ))}
                     </select>
                   </div>
-
                 </div>
-
                 <div className="beers-box">
                     {this.state.beersByName.map((item) => (
                         <div key={item.id}>
@@ -171,7 +172,7 @@ getBeersByCountry(){
                             <Link to={`/beer/${item.id}`}> 
                             <h5>{item.name}</h5></Link>
                             ):(
-                            <p>test</p>
+                            <p>not exist</p>
                             )}
                         </div>
                     ))}
@@ -182,14 +183,13 @@ getBeersByCountry(){
                             {((item.style.name).toLowerCase()).includes(this.state.type) ? (
                                 <Link to={`/beer/${item.id}`}> 
                                 <h5>{item.name}</h5>
-                                <h6 className="red">{item.style.name}</h6>
                                 </Link>
                             ):(
-                                <p>test</p>
+                                <p>not exist</p>
                             )}
                         </div>
                         ):(
-                            <h2>Loading...</h2>
+                            <p>Loading...</p>
                         )}
                         </div>
                     ))}
@@ -200,7 +200,7 @@ getBeersByCountry(){
                                 <h5>{item.name}</h5>
                                 </Link>
                             ):(
-                                <p>test</p>
+                                <p>not exist</p>
                             )}
                         </div>                 
                     ))}
