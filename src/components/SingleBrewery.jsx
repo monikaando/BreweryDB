@@ -67,9 +67,7 @@ class SingleBrewery extends Component {
         return (
             <div className="single-brew-page">
                 <div>
-                    <a href={brew.website} rel="noopener noreferrer" target="_blank">
-                        <h1>{brew.name}</h1>
-                    </a>
+                    <h1>{brew.name}</h1>
                     {brew.established ? (
                                     <h5><b>Established: {brew.established}</b></h5>
                                 ) : (
@@ -87,6 +85,9 @@ class SingleBrewery extends Component {
                                 <p></p>   
                             )}
                         </div>
+                        <a href={brew.website} rel="noopener noreferrer" target="_blank">
+                        <h4>{brew.website}</h4>
+                    </a>
                         <div className="brew-description">
                             <p>{brew.description}</p>
                         </div>

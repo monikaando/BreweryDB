@@ -12,7 +12,6 @@ export default class SearchBeers extends Component {
             },
         name:"", 
         type:"",
-        // country:"",
         beersByName:[],
         beersByType:[],
         beersByCountry:[],//tu powinno wrzucic kraje ktore wyszukalo po "ISO"
@@ -26,9 +25,9 @@ export default class SearchBeers extends Component {
     this.handleBeerCountryChange = this.handleBeerCountryChange.bind(this);
     this.getBeersByType = this.getBeersByType.bind(this);
     this.getBeersByCountry = this.getBeersByCountry.bind(this);
-    this.getCountryCodeList=this.getCountryCodeList.bind(this);
-
-    this.increment = this.increment.bind(this);
+    this.getCountryCodeList = this.getCountryCodeList.bind(this);
+    this.clearSearch = this.clearSearch.bind(this);
+    // this.increment = this.increment.bind(this);
 }
 componentDidMount() {
         this.getCountryCodeList();
@@ -38,12 +37,14 @@ beerNameInputHandler(e) {
     this.setState({
         name: inputValue.toLowerCase()
     }) 
+    this.clearSearch()
 }
 beerTypeInputHandler(e){
     let input = e.target.value;
     this.setState({
         type: input.toLowerCase()
     }) 
+    this.clearSearch()
 }
 handleBeerCountryChange(e){
         e.preventDefault();
@@ -53,6 +54,7 @@ handleBeerCountryChange(e){
             select:updatedCountryCode
         })
         this.getBeersByCountry();
+        this.clearSearch()
 }
 
 getBeersByName(){
@@ -63,7 +65,7 @@ getBeersByName(){
         .then(res => {
             this.setState({
                 beersByName: res.data.data,
-                // newpage: this.state.page + 1
+                //page: this.state.page + 1
            })
             console.log(this.state.beersByName[0])
             console.log(res.data.data.length)
@@ -74,16 +76,14 @@ getBeersByName(){
                 console.log( "Error")
         })
     }
-increment(){
-    this.setState((prevState) => {
-    return {page: prevState.page + 1}
-  });
-  }
+// increment(){
+//     this.setState((prevState) => {
+//     return {page: prevState.page + 1}
+//   });
+//}
 getAllBeersByName(){
     this.getBeersByName();
-    this.increment();
     this.getBeersByName();
-    this.increment();
     this.getBeersByName();
 }
 getBeersByType(){
@@ -135,7 +135,14 @@ getBeersByCountry(){
         .catch((err)=> {
                 console.log( "Error")
         })
-    }    
+    }   
+clearSearch(){
+    this.setState({
+        beersByName:[],
+        beersByType:[],
+        beersByCountry:[]
+})
+}
     render() {
         return (
             <div className="search-page">
@@ -166,16 +173,28 @@ getBeersByCountry(){
                   </div>
                 </div>
                 <div className="beers-box">
+                {this.state.beersByName ? (
+                    <div>
                     {this.state.beersByName.map((item) => (
-                        <div key={item.id}>
-                        {((item.name).toLowerCase()).includes(this.state.name) ?(
-                            <Link to={`/beer/${item.id}`}> 
-                            <h5>{item.name}</h5></Link>
-                            ):(
-                            <p>not exist</p>
-                            )}
-                        </div>
-                    ))}
+                            <div key={item.id}>
+                            {((item.name).toLowerCase()).includes((this.state.name).toLowerCase()) ? (
+                                <div>
+                                <Link to={`/beer/${item.id}`}> 
+                                <h5>{item.name}</h5></Link>
+                                </div>
+                                ):(
+                                <p>not exist</p>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                ):(
+                    <h4>Nothing here, try another name</h4>
+                )}
+
+                
+                {this.state.beersByType ? (
+                    <div>
                     {this.state.beersByType.map((item) => (
                         <div key={item.id}>
                         {item.style ? (
@@ -193,6 +212,12 @@ getBeersByCountry(){
                         )}
                         </div>
                     ))}
+                    </div>
+                ):(
+                    <div>
+                        <h4>Nothing here, try another type</h4>
+                    </div>
+                )}    
                      {this.state.beersByCountry.map((item) => (
                         <div key={item.id}>
                         {((item.breweries[0].locations[0].countryIsoCode).includes(this.state.select.selectedCode)) ? (
