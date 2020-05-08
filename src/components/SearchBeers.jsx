@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import '../styles/SearchBeers.scss';
 import axios from 'axios';
+import _ from "lodash";
+
 
 export default class SearchBeers extends Component {
     constructor (props){
@@ -14,20 +16,20 @@ export default class SearchBeers extends Component {
         type:"",
         beersByName:[],
         beersByType:[],
-        beersByCountry:[],//tu powinno wrzucic kraje ktore wyszukalo po "ISO"
-        countryCode:[], //kod pobrany z ogolnego do listy
+        beersByCountry:[],
+        countryCode:[], 
         page:1
 }
     this.beerNameInputHandler = this.beerNameInputHandler.bind(this);
     this.getBeersByName = this.getBeersByName.bind(this);
-    this.getAllBeersByName = this.getAllBeersByName.bind(this);
     this.beerTypeInputHandler = this.beerTypeInputHandler.bind(this);
     this.handleBeerCountryChange = this.handleBeerCountryChange.bind(this);
     this.getBeersByType = this.getBeersByType.bind(this);
     this.getBeersByCountry = this.getBeersByCountry.bind(this);
     this.getCountryCodeList = this.getCountryCodeList.bind(this);
     this.clearSearch = this.clearSearch.bind(this);
-    // this.increment = this.increment.bind(this);
+    this.getNextPage = this.getNextPage.bind(this);
+    this.getAllBeersName = this.getAllBeersName.bind(this);
 }
 componentDidMount() {
         this.getCountryCodeList();
@@ -35,7 +37,7 @@ componentDidMount() {
 beerNameInputHandler(e) {
     let inputValue = e.target.value;
     this.setState({
-        name: inputValue.toLowerCase()
+        name: inputValue.toLowerCase(),
     }) 
     this.clearSearch()
 }
@@ -56,7 +58,18 @@ handleBeerCountryChange(e){
         this.getBeersByCountry();
         this.clearSearch()
 }
-
+getNextPage(){
+    this.setState({
+        page: this.state.page + 1
+        })
+    this.getBeersByName()
+}
+getAllBeersName(){
+    this.getBeersByName()
+    this.setState({
+        page: this.state.page + 1
+    })
+}
 getBeersByName(){
         axios({
             method: "GET",
@@ -65,27 +78,15 @@ getBeersByName(){
         .then(res => {
             this.setState({
                 beersByName: res.data.data,
-                //page: this.state.page + 1
            })
             console.log(this.state.beersByName[0])
             console.log(res.data.data.length)
             console.log(this.state.page)
-            console.log(res.data.numberOfPages)
         })
         .catch((err)=> {
                 console.log( "Error")
         })
     }
-// increment(){
-//     this.setState((prevState) => {
-//     return {page: prevState.page + 1}
-//   });
-//}
-getAllBeersByName(){
-    this.getBeersByName();
-    this.getBeersByName();
-    this.getBeersByName();
-}
 getBeersByType(){
         axios({
             method: "GET",
@@ -93,7 +94,8 @@ getBeersByType(){
         })
         .then(res => {
             this.setState({
-                beersByType: res.data.data
+                beersByType: res.data.data,
+                page: this.state.page + 1
             })
             console.log(this.state.beersByType)
             console.log(this.state.beersByType[0].style.name)
@@ -129,6 +131,7 @@ getBeersByCountry(){
             this.setState({
                 beersByCountry: res.data.data
             })
+            this.removeDuplicates()
             console.log(this.state.select.selectedCode)
             console.log(this.state.beersByCountry)
         })
@@ -143,6 +146,14 @@ clearSearch(){
         beersByCountry:[]
 })
 }
+removeDuplicates() {
+    if(this.state.breweries){
+    var unique = _.uniqBy(this.state.breweries,'breweryId')
+    }
+    this.setState({
+        breweries:unique
+    })
+}
     render() {
         return (
             <div className="search-page">
@@ -150,7 +161,7 @@ clearSearch(){
                 <div className="search-boxes">
                     <div>
                         <input type="text" name="beername" placeholder="search by name" value={this.state.name} onChange={this.beerNameInputHandler}/>
-                        <button onClick={this.getAllBeersByName}>Search</button>
+                        <button onClick={this.getAllBeersName}>Search</button>
                     </div>
                     <div>
                         <input type="text" name="beertype" placeholder="search by type" value={this.state.type} onChange={this.beerTypeInputHandler}/>
@@ -171,6 +182,7 @@ clearSearch(){
                         ))}
                     </select>
                   </div>
+                  <button onClick={this.getNextPage}>Next page</button>
                 </div>
                 <div className="beers-box">
                 {this.state.beersByName ? (
@@ -216,6 +228,7 @@ clearSearch(){
                 ):(
                     <div>
                         <h4>Nothing here, try another type</h4>
+
                     </div>
                 )}    
                      {this.state.beersByCountry.map((item) => (
