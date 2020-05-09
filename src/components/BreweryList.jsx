@@ -6,11 +6,11 @@ import _ from "lodash";
 
 
 class BreweryList extends Component {
-     _isMounted = false;
+    _isMounted = false;
     constructor(props) {
         super(props);
         this.state = {
-             select: {
+            select: {
                 selectedCode:""
             },
             breweries:[],
@@ -27,13 +27,12 @@ class BreweryList extends Component {
         this._isMounted = true;
        
     }
-  componentWillUnmount() {
+    componentWillUnmount() {
     // fix Warning: Can't perform a React state update on an unmounted component
-    this.setState = (state,callback)=>{
+        this.setState = (state,callback)=>{
         return;
-    };
-
-}
+        };
+    }
     getCountryCodeList(){
         axios({
             method: "GET",
@@ -75,7 +74,6 @@ class BreweryList extends Component {
             breweries:unique
         })
     }
-    
     handleInputChange(e) {
         e.preventDefault();
         let updatedCountryCode = this.state.select;
@@ -85,7 +83,6 @@ class BreweryList extends Component {
         })
         this.getBreweriesList();
     }
-
     render() {
         let BreweriesCountry;
         if(!this.state.select.selectedCode){
@@ -120,8 +117,7 @@ class BreweryList extends Component {
                         </div>
                     ))}
             </div>    
-   )
+        )
+    }
 }
-}
-
 export default BreweryList;

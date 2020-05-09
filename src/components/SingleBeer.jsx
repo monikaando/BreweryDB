@@ -6,13 +6,12 @@ import axios from 'axios';;
 
 
 class SingleBeer extends Component {
-    	constructor(props) {
-		super(props);
-		this.state = {
-            beer:[]
-		}
-        this.getSingleBeer=this.getSingleBeer.bind(this);
-
+    constructor(props) {
+    super(props);
+    this.state = {
+        beer:[]
+    }
+    this.getSingleBeer=this.getSingleBeer.bind(this);
 	}
     componentDidMount() {
         this.getSingleBeer();
@@ -32,27 +31,26 @@ class SingleBeer extends Component {
             console.log( "Error")
         })
     }
-      
     render () { 
         let beer=this.state.beer    
         if(beer) {
         return (
             <div>
                 <div className="beer-img-details">
-                        <h1>{beer.name}</h1>  
-                            {beer.style ? (
-                                <div>
-                                    <p><b>Style: </b>{beer.style.name}</p>
-                                    <p><b>Brewed by:</b>&nbsp;
-                                    <Link to={`/breweries/brewery/${beer.breweries[0].id}`}>{beer.breweries[0].name}</Link> in {beer.breweries[0].locations[0].country.displayName}</p>
-                                    <div className="abv-ibu">
-                                        <p><b>ABV:</b> {beer.abv}%</p>
-                                        <p><b>IBU:</b> {beer.style.ibuMin} - {beer.style.ibuMax}</p>  
-                                    </div>         
-                                </div>
-                            ):(
-                                <h2>Loading...</h2>
-                            )}
+                    <h1>{beer.name}</h1>  
+                    {beer.style ? (
+                        <div>
+                            <p><b>Style: </b>{beer.style.name}</p>
+                            <p><b>Brewed by:</b>&nbsp;
+                            <Link to={`/breweries/brewery/${beer.breweries[0].id}`}>{beer.breweries[0].name}</Link> in {beer.breweries[0].locations[0].country.displayName}</p>
+                            <div className="abv-ibu">
+                                <p><b>ABV:</b> {beer.abv}%</p>
+                                <p><b>IBU:</b> {beer.style.ibuMin} - {beer.style.ibuMax}</p>  
+                            </div>         
+                        </div>
+                    ):(
+                        <h2>Loading...</h2>
+                    )}
                     <div className="beer-img">
                         {beer.labels ? (      
                             <img src={beer.labels.medium} alt="beer-label"/>
@@ -61,7 +59,6 @@ class SingleBeer extends Component {
                         )}  
                     </div> 
                 </div>
-
                 <div className="beer-description">
                     {beer.style ? (
                             <p>{beer.style.description}</p>
@@ -71,14 +68,13 @@ class SingleBeer extends Component {
                 </div>
             </div>
         )
-        } else{
+        } else {
         return (
             <div>
                 <h2>Loading...</h2>
             </div>
         )
-    }
+        }
     }
 }
-
 export default SingleBeer

@@ -9,9 +9,9 @@ export default class SearchBeers extends Component {
     constructor (props){
     super(props)
     this.state = {
-            select: {
-                selectedCode:"" 
-            },
+        select: {
+            selectedCode:"" 
+        },
         name:"", 
         type:"",
         beersByName:[],
@@ -31,6 +31,8 @@ export default class SearchBeers extends Component {
     this.clearSearch = this.clearSearch.bind(this);
     this.getNextPage = this.getNextPage.bind(this);
     this.getAllBeersName = this.getAllBeersName.bind(this);
+    this.getAllBeersType = this.getAllBeersType.bind(this);
+    this.getAllBeersCountry = this.getAllBeersCountry.bind(this);
     this.clearInputFields = this.clearInputFields.bind(this);
 }
 componentDidMount() {
@@ -41,14 +43,14 @@ beerNameInputHandler(e) {
     this.setState({
         name: inputValue.toLowerCase(),
     }) 
-    this.clearSearch()
+    this.clearSearch();
 }
 beerTypeInputHandler(e){
     let input = e.target.value;
     this.setState({
         type: input.toLowerCase()
     }) 
-    this.clearSearch()
+    this.clearSearch();
 }
 handleBeerCountryChange(e){
     e.preventDefault();
@@ -57,7 +59,7 @@ handleBeerCountryChange(e){
     this.setState({
         select:updatedCountryCode
     })
-    this.getBeersByCountry();
+    this.getAllBeersCountry();
     this.clearSearch()
 }
 getNextPage(){
@@ -67,13 +69,12 @@ getNextPage(){
     if (this.state.name.length>0){
         this.getBeersByName()
     }
-    else if(!this.state.length>0) (
+    else if(this.state.type.length>0) (
         this.getBeersByType()
     )
     else if(this.state.select.selectedCode.length>0){
         this.getBeersByCountry()
     }
-
 }
 getAllBeersName(){
     this.getBeersByName()
@@ -81,42 +82,54 @@ getAllBeersName(){
         page: this.state.page + 1
     })
 }
+getAllBeersType(){
+    this.getBeersByType()
+    this.setState({
+        page: this.state.page + 1
+    })
+}
+getAllBeersCountry(){
+    this.getBeersByCountry()
+    this.setState({
+        page: this.state.page + 1
+    })
+}
 getBeersByName(){
-        axios({
-            method: "GET",
-            url: `http://localhost:3000/search?key=659d5c6b8f3d2447f090119e48202fdb&p=${this.state.page}&type=beer&q=${this.state.name}`
+    axios({
+        method: "GET",
+        url: `http://localhost:3000/search?key=659d5c6b8f3d2447f090119e48202fdb&p=${this.state.page}&type=beer&q=${this.state.name}`
+    })
+    .then(res => {
+        this.setState({
+            beersByName: res.data.data,
+            numberOfPages:res.data.numberOfPages
         })
-        .then(res => {
-            this.setState({
-                beersByName: res.data.data,
-                numberOfPages:res.data.numberOfPages
-
-           })
-            console.log(this.state.beersByName[0])
-            console.log(res.data.data.length)
-            console.log(this.state.page)
-        })
-        .catch((err)=> {
-                console.log( "Error")
-        })
-    }
+        console.log('The first beer form the page '+ this.state.beersByName[0].name)
+        console.log('Total number of pages '+ res.data.numberOfPages)
+        console.log('Next page has number: '+ this.state.page)
+    })
+    .catch((err)=> {
+            console.log("No more beers here")
+    })
+}
 getBeersByType(){
-        axios({
-            method: "GET",
-            url: `http://localhost:3000/search?key=659d5c6b8f3d2447f090119e48202fdb&p=${this.state.page}&type=beer&q=${this.state.type}`
+    axios({
+        method: "GET",
+        url: `http://localhost:3000/search?key=659d5c6b8f3d2447f090119e48202fdb&p=${this.state.page}&type=beer&q=${this.state.type}`
+    })
+    .then(res => {
+        this.setState({
+            beersByType: res.data.data,
+            numberOfPages: res.data.numberOfPages
         })
-        .then(res => {
-            this.setState({
-                beersByType: res.data.data,
-                numberOfPages:res.data.numberOfPages
-            })
-            console.log(this.data.numberOfPages)
-
-        })
-        .catch((err)=> {
-                console.log( "Error")
-        })
-    }    
+            console.log('The first beer form the page '+ this.state.beersByType[0].name)
+            console.log('Total number of pages '+ res.data.numberOfPages)
+            console.log('Next page has number: '+ this.state.page)
+    })
+    .catch((err)=> {
+        console.log("No more beers here")
+    })
+}    
 getCountryCodeList(){
     axios({
         method: "GET",
@@ -130,26 +143,29 @@ getCountryCodeList(){
         console.log(this.state.countryCode.toString())
     })
     .catch((err)=> {
-            console.log( "Error")
+            console.log("No more beers here")
     })
 }
 getBeersByCountry(){
-        axios({
-            method: "GET",
-            url: `http://localhost:3000/beers/?withBreweries=Y&p=${this.state.page}&key=659d5c6b8f3d2447f090119e48202fdb`
+    axios({
+        method: "GET",
+        url: `http://localhost:3000/beers/?withBreweries=Y&p=${this.state.page}&key=659d5c6b8f3d2447f090119e48202fdb`
+    })
+    .then(res => {
+        this.setState({
+            beersByCountry: res.data.data,
+            numberOfPages: res.data.numberOfPages
         })
-        .then(res => {
-            this.setState({
-                beersByCountry: res.data.data
-            })
-            this.removeDuplicates()
-            console.log(this.state.select.selectedCode)
-            console.log(this.state.beersByCountry)
-        })
-        .catch((err)=> {
-                console.log( "Error")
-        })
-    }   
+        this.removeDuplicates()
+        console.log('Country you have chosen: ' + this.state.select.selectedCode)
+        console.log(this.state.beersByCountry)
+        console.log('Total number of pages '+ res.data.numberOfPages)
+        console.log('Next page has number: '+ this.state.page)
+    })
+    .catch((err)=> {
+            console.log("No more beers here")
+    })
+}   
 clearSearch(){
     this.setState({
         beersByName:[],
@@ -159,7 +175,7 @@ clearSearch(){
 })
 }
 clearInputFields(){
-      this.setState({
+    this.setState({
         select: {
                 selectedCode:"" 
             },
@@ -169,11 +185,12 @@ clearInputFields(){
         beersByType:[],
         beersByCountry:[],
         countryCode:[], 
-})
+        page:1,
+    })
 }
 removeDuplicates() {
     if(this.state.breweries){
-    var unique = _.uniqBy(this.state.breweries,'breweryId')
+        var unique = _.uniqBy(this.state.breweries,'breweryId')
     }
     this.setState({
         breweries:unique
@@ -195,7 +212,7 @@ removeDuplicates() {
                         </div>
                         <div>
                             <input type="text" name="beertype" placeholder="search by type" value={this.state.type} onChange={this.beerTypeInputHandler}/>
-                            <button onClick={this.getBeersByType}>Search</button>
+                            <button onClick={this.getAllBeersType}>Search</button>
                         </div>                  
                         <div className="select">
                             <select
@@ -203,6 +220,7 @@ removeDuplicates() {
                                 name="selectedCode" 
                                 value={this.state.select.selectedCode.toString()} 
                                 onChange={this.handleBeerCountryChange}
+                                onClick={this.getCountryCodeList}
                                 >
                                 <option value="" defaultValue>All countries</option>
                                 {this.state.countryCode.map(item => (
@@ -255,10 +273,10 @@ removeDuplicates() {
                     ))}
                     </div>
                 ):(
-                    <div>
-                        <h4>Nothing here, try another type</h4>
-                    </div>
+                    <h4>Nothing here, try another type</h4>
                 )}    
+                {this.state.beersByCountry ? (
+                    <div>
                      {this.state.beersByCountry.map((item) => (
                         <div key={item.id}>
                         {((item.breweries[0].locations[0].countryIsoCode).includes(this.state.select.selectedCode)) ? (
@@ -270,6 +288,10 @@ removeDuplicates() {
                             )}
                         </div>                 
                     ))}
+                    </div>
+                ) : (
+                    <h4>Nothing here, try another country</h4>
+                )}
                 </div>
             </div>
         )
