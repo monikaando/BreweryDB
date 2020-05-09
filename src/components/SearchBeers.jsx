@@ -4,7 +4,6 @@ import '../styles/SearchBeers.scss';
 import axios from 'axios';
 import _ from "lodash";
 
-
 export default class SearchBeers extends Component {
     constructor (props){
     super(props)
@@ -100,6 +99,7 @@ getBeersByName(){
         url: `http://localhost:3000/search?key=659d5c6b8f3d2447f090119e48202fdb&p=${this.state.page}&type=beer&q=${this.state.name}`
     })
     .then(res => {
+        debugger
         this.setState({
             beersByName: res.data.data,
             numberOfPages:res.data.numberOfPages
@@ -172,13 +172,15 @@ clearSearch(){
         beersByType:[],
         beersByCountry:[],
         countryCode:[], 
+        page:1,
+        numberOfPages:0
 })
 }
 clearInputFields(){
     this.setState({
         select: {
-                selectedCode:"" 
-            },
+            selectedCode:"" 
+        },
         name:"", 
         type:"",
         beersByName:[],
@@ -186,6 +188,7 @@ clearInputFields(){
         beersByCountry:[],
         countryCode:[], 
         page:1,
+        numberOfPages:0
     })
 }
 removeDuplicates() {
@@ -202,7 +205,7 @@ removeDuplicates() {
                 <h2>Search beers by name, type or country</h2>
                 <div>
                     <div className="buttons-next-clear">
-                        <button onClick={this.clearInputFields}>Clear imput fields</button>
+                        <button onClick={this.clearInputFields}>Reset searching</button>
                         <button onClick={this.getNextPage}>Next page </button>
                     </div>
                     <div className="search-boxes">
@@ -232,22 +235,29 @@ removeDuplicates() {
                         </div>
                     </div>
                 </div>
+                <div className="numberOfPages">
+                {this.state.numberOfPages>=1 && this.state.page<=(this.state.numberOfPages)+1 ? (
+                    <h5>page {this.state.page-1}/{this.state.numberOfPages}</h5>
+                ):(
+                    <h5> </h5>
+                )}    
+                </div>
                 <div className="beers-box">
                 {this.state.beersByName ? (
-                    <div>
-                    {this.state.beersByName.map((item) => (
-                            <div key={item.id}>
-                            {((item.name).toLowerCase()).includes((this.state.name).toLowerCase()) ? (
-                                <div>
-                                <Link to={`/beer/${item.id}`}> 
-                                <h5>{item.name}</h5></Link>
+                        <div>
+                        {this.state.beersByName.map((item) => (
+                                <div key={item.id}>
+                                {((item.name).toLowerCase()).includes((this.state.name).toLowerCase()) ? (
+                                    <div>
+                                    <Link to={`/beer/${item.id}`}> 
+                                    <h5>{item.name}</h5></Link>
+                                    </div>
+                                    ):(
+                                    <p>not exists</p>
+                                    )}
                                 </div>
-                                ):(
-                                <p>not exist</p>
-                                )}
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
                 ):(
                     <h4>Nothing here, try another name</h4>
                 )}
@@ -263,7 +273,7 @@ removeDuplicates() {
                                 <h5>{item.name}</h5>
                                 </Link>
                             ):(
-                                <p>not exist</p>
+                                <p>not exists</p>
                             )}
                         </div>
                         ):(
@@ -284,7 +294,7 @@ removeDuplicates() {
                                 <h5>{item.name}</h5>
                                 </Link>
                             ):(
-                                <p>not exist</p>
+                                <p>not exists</p>
                             )}
                         </div>                 
                     ))}
