@@ -55,11 +55,11 @@ handleBeerCountryChange(e){
     e.preventDefault();
     let updatedCountryCode = this.state.select;
     updatedCountryCode[e.target.name] = e.target.value;
+    this.getAllBeersCountry();
     this.setState({
         select:updatedCountryCode
     })
     this.getAllBeersCountry();
-    this.clearSearch()
 }
 getNextPage(){
     this.setState({
@@ -71,7 +71,7 @@ getNextPage(){
     else if(this.state.type.length>0) (
         this.getBeersByType()
     )
-    else if(this.state.select.selectedCode.length>0){
+    else if(this.state.select.selectedCode){
         this.getBeersByCountry()
     }
 }
@@ -99,14 +99,10 @@ getBeersByName(){
         url: `http://localhost:3000/search?key=659d5c6b8f3d2447f090119e48202fdb&p=${this.state.page}&type=beer&q=${this.state.name}`
     })
     .then(res => {
-        debugger
         this.setState({
             beersByName: res.data.data,
             numberOfPages:res.data.numberOfPages
         })
-        console.log('The first beer form the page '+ this.state.beersByName[0].name)
-        console.log('Total number of pages '+ res.data.numberOfPages)
-        console.log('Next page has number: '+ this.state.page)
     })
     .catch((err)=> {
             console.log("No more beers here")
@@ -122,9 +118,6 @@ getBeersByType(){
             beersByType: res.data.data,
             numberOfPages: res.data.numberOfPages
         })
-            console.log('The first beer form the page '+ this.state.beersByType[0].name)
-            console.log('Total number of pages '+ res.data.numberOfPages)
-            console.log('Next page has number: '+ this.state.page)
     })
     .catch((err)=> {
         console.log("No more beers here")
@@ -149,18 +142,15 @@ getCountryCodeList(){
 getBeersByCountry(){
     axios({
         method: "GET",
-        url: `http://localhost:3000/beers/?withBreweries=Y&p=${this.state.page}&key=659d5c6b8f3d2447f090119e48202fdb`
+        url: `http://localhost:3000/beers/?withBreweries=Y&key=659d5c6b8f3d2447f090119e48202fdb&p=${this.state.page}`
     })
     .then(res => {
         this.setState({
             beersByCountry: res.data.data,
             numberOfPages: res.data.numberOfPages
         })
+        console.log(this.state.page)
         this.removeDuplicates()
-        console.log('Country you have chosen: ' + this.state.select.selectedCode)
-        console.log(this.state.beersByCountry)
-        console.log('Total number of pages '+ res.data.numberOfPages)
-        console.log('Next page has number: '+ this.state.page)
     })
     .catch((err)=> {
             console.log("No more beers here")
