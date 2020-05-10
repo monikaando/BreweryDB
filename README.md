@@ -86,7 +86,7 @@ from a beer tap ;)
     
 ## Visuals
 <a href="https://youtu.be/ASt1TVXXtIA"><b>Video</b></a>
-
+Click a video and see how TapApp works.
 
 <b>Desktop version:</b>
 
