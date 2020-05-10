@@ -49,7 +49,7 @@ from a beer tap ;)
     
 ## Beers button
     1) Here you can search beers by name, type or country
-    2) Beside this I created 2 buttons which allow to reset searching data and jump to the next page 
+    2) Beside this I created 2 buttons which allow to reset searching data and jump to the next page
 
     Searching by name
         1) I used endpoints: search/?key=XXX&p=${this.state.page}&type=beer&q=${this.state.name} It was useful
@@ -62,10 +62,10 @@ from a beer tap ;)
         checking if beer.styles exist (becasue not always it is provided)
 
     Searching by country
-        1) When the page is load on the beginning the app is calling country code list to show it in a drop down
-        list.
-        Searching resetting this list, so if we won't refresh a page it is not visible. I set up the app that it
-        calls code list again after you click on drop down list (it can take a while to download codes)
+        1) When the page is load on the beginning the app is calling country code list to show it in a drop 
+        down list.
+        Searching resetting this list, so if we won't refresh a page it is not visible. I set up the app that
+        it calls code list again after you click on drop down list (it can take a while to download codes)
         
         2) I discovered that searching doesn't work with locations, so I used: 
         /beers/?withBreweries=Y&key=XXX=${this.state.page}
