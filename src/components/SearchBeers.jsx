@@ -96,7 +96,7 @@ getAllBeersCountry(){
 getBeersByName(){
     axios({
         method: "GET",
-        url: `http://localhost:3000/search/?key=659d5c6b8f3d2447f090119e48202fdb&p=${this.state.page}&type=beer&q=${this.state.name}`
+        url: `http://localhost:3000/search/?key=4a67a4e833fd9ccbd77588fbaa724c33&p=${this.state.page}&type=beer&q=${this.state.name}`
     })
     .then(res => {
         this.setState({
@@ -111,7 +111,7 @@ getBeersByName(){
 getBeersByType(){
     axios({
         method: "GET",
-        url: `http://localhost:3000/search/?key=659d5c6b8f3d2447f090119e48202fdb&p=${this.state.page}&type=beer&q=${this.state.type}`
+        url: `http://localhost:3000/search/?key=4a67a4e833fd9ccbd77588fbaa724c33&p=${this.state.page}&type=beer&q=${this.state.type}`
     })
     .then(res => {
         this.setState({
@@ -126,7 +126,7 @@ getBeersByType(){
 getCountryCodeList(){
     axios({
         method: "GET",
-        url: "http://localhost:3000/locations/?key=659d5c6b8f3d2447f090119e48202fdb"
+        url: "http://localhost:3000/locations/?key=4a67a4e833fd9ccbd77588fbaa724c33"
     })
     .then(res => {
         let code = [...new Set(res.data.data.map(item => item.countryIsoCode))]
@@ -142,7 +142,7 @@ getCountryCodeList(){
 getBeersByCountry(){
     axios({
         method: "GET",
-        url: `http://localhost:3000/beers/?withBreweries=Y&key=659d5c6b8f3d2447f090119e48202fdb&p=${this.state.page}`
+        url: `http://localhost:3000/beers/?withBreweries=Y&key=4a67a4e833fd9ccbd77588fbaa724c33&p=${this.state.page}`
     })
     .then(res => {
         this.setState({
@@ -215,7 +215,7 @@ removeDuplicates() {
                                 onChange={this.handleBeerCountryChange}
                                 onClick={this.getCountryCodeList}
                                 >
-                                <option value="" defaultValue>All countries</option>
+                                <option value="" defaultValue>Choose a country</option>
                                 {this.state.countryCode.map(item => (
                                 <option name="selectedCode" key={item} value={item}>
                                     {item}

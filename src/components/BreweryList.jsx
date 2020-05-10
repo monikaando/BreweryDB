@@ -36,7 +36,7 @@ class BreweryList extends Component {
     getCountryCodeList(){
         axios({
             method: "GET",
-            url: "http://localhost:3000/locations/?key=659d5c6b8f3d2447f090119e48202fdb"
+            url: "http://localhost:3000/locations/?key=4a67a4e833fd9ccbd77588fbaa724c33"
         })
         .then(res => {
             let code = [...new Set(res.data.data.map(item => item.countryIsoCode))]
@@ -52,7 +52,7 @@ class BreweryList extends Component {
     getBreweriesList(){
         axios({
             method: "GET",
-            url: `http://localhost:3000/locations/?countryIsoCode=${this.state.select.selectedCode}&order=breweryName&key=659d5c6b8f3d2447f090119e48202fdb`
+            url: `http://localhost:3000/locations/?countryIsoCode=${this.state.select.selectedCode}&order=breweryName&key=4a67a4e833fd9ccbd77588fbaa724c33`
         })
         .then(res => {
             this.setState({

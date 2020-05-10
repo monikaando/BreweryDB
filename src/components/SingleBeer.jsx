@@ -19,7 +19,7 @@ class SingleBeer extends Component {
     getSingleBeer(){
         axios({
             method: "GET",
-            url: `http://localhost:3000/beer/${this.props.match.params.id}/?withBreweries=Y&key=659d5c6b8f3d2447f090119e48202fdb`
+            url: `http://localhost:3000/beer/${this.props.match.params.id}/?withBreweries=Y&key=4a67a4e833fd9ccbd77588fbaa724c33`
         })
         .then(res => {
             this.setState({
