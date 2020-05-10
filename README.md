@@ -111,15 +111,7 @@ from a beer tap ;)
 </div>
 
 <div style="display: flex; justify-content: center">
-<img src="https://res.cloudinary.com/mokaweb/image/upload/c_scale,w_800/v1589118317/PXl.WIDGETS/6.png" />
-</div>
-
-<div style="display: flex; justify-content: center">
-<img src="https://res.cloudinary.com/mokaweb/image/upload/c_scale,w_800/v1589118321/PXl.WIDGETS/7.png" />
-</div>
-
-<div style="display: flex; justify-content: center">
-<img src="https://res.cloudinary.com/mokaweb/image/upload/c_scale,w_800/v1589118317/PXl.WIDGETS/8.png" />
+<img src="https://res.cloudinary.com/mokaweb/image/upload/c_scale,w_800/v1589131346/PXl.WIDGETS/6b.png" />
 </div>
 
 
@@ -133,7 +125,7 @@ from a beer tap ;)
 </div>
 
 <div>
-<img src="https://res.cloudinary.com/mokaweb/image/upload/c_scale,w_200/v1589118310/PXl.WIDGETS/3mob.png" />
+<img src="https://res.cloudinary.com/mokaweb/image/upload/c_scale,w_200/v1589131344/PXl.WIDGETS/4mob.png" />
 </div>
 
 
