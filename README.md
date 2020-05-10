@@ -98,15 +98,15 @@ from a beer tap ;)
 
 <b>Mobile version:</b>
 <div style="display: flex; justify-content: center; width: 100px">
-<img src="https://res.cloudinary.com/mokaweb/image/upload/v1589118309/PXl.WIDGETS/1mob.png" />
+<img src="https://res.cloudinary.com/mokaweb/image/upload/c_scale,w_400/v1589118309/PXl.WIDGETS/1mob.png" />
 </div>
 
 <div style="display: flex; justify-content: center; width: 200px">
-<img src="https://res.cloudinary.com/mokaweb/image/upload/v1589118309/PXl.WIDGETS/2mob.png" />
+<img src="https://res.cloudinary.com/mokaweb/image/upload/c_scale,w_400/v1589118309/PXl.WIDGETS/2mob.png" />
 </div>
 
 <div>
-<img src="https://res.cloudinary.com/mokaweb/image/upload/v1589118310/PXl.WIDGETS/3mob.png" />
+<img src="https://res.cloudinary.com/mokaweb/image/upload/c_scale,w_400/v1589118310/PXl.WIDGETS/3mob.png" />
 </div>
 
 
