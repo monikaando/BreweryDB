@@ -85,8 +85,9 @@ from a beer tap ;)
     An additional element with the link to my github page.
     
 ## Visuals
-
-<b>Desktop version:</b>
+<b>Video</b>
+https://youtu.be/-sevudRJlAo
+<b>Desktop version:</>
 
 <div style="display: flex; justify-content: center">
 <img src="https://res.cloudinary.com/mokaweb/image/upload/c_scale,w_800/v1589118327/PXl.WIDGETS/1.png" />
