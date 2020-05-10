@@ -105,7 +105,7 @@ from a beer tap ;)
 <img src="https://res.cloudinary.com/mokaweb/image/upload/v1589118309/PXl.WIDGETS/2mob.png" />
 </div>
 
-<div style="display: flex; justify-content: center width: 50%">
+<div>
 <img src="https://res.cloudinary.com/mokaweb/image/upload/v1589118310/PXl.WIDGETS/3mob.png" />
 </div>
 
