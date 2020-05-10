@@ -93,7 +93,7 @@ from a beer tap ;)
 </div>
 
 <div style="display: flex; justify-content: center">
-<img src="https://res.cloudinary.com/mokaweb/image/upload/v1589118317/PXl.WIDGETS/8.png" />
+<img src="https://res.cloudinary.com/mokaweb/image/upload/c_scale,w_800/v1589118317/PXl.WIDGETS/8.png" />
 </div>
 
 <b>Mobile version:</b>
