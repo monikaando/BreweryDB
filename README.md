@@ -45,13 +45,13 @@ from a beer tap ;)
     1) Here you can search beers by name, type or country
     2) Beside this I created 2 buttons which allow to reset searching data and jump to the next page 
 
-    - Searching by name
+    Searching by name
         1) I used endpoints: search/?key=XXX&p=${this.state.page}&type=beer&q=${this.state.name} It was useful with searching, but Brewery didn't provide detailed searching. Whetever i put on the end it was looking for if the whole beer object contain it. To search by name I checked if name of the beer includes value of the input field.
 
-    - Searching by type
+    Searching by type
         1) I used the same endpoints like for searching by name. I repeated the same procedure again, this time checking if beer.styles exist (becasue not always it is provided)
 
-    - Searching by country
+    Searching by country
         1) When the page is load on the beginning the app is calling country code list to show it in a drop down list. Searching resetting this list, so if we won't refresh a page it is not visible. I set up the app that it calls code list again after you click on drop down list (it can take a while to download codes)
         2) I discovered that searching doesn't work with locations, so I used: /beers/?withBreweries=Y&key=XXX=${this.state.page}
         I must choose between two options: download every beer at once and make app waiting till all beers are downloaded, or show beers we are looking for, on these pages where they are physically exist and then search beers page by page. I chose option with button, what couses that some pages are half empty or have only few beers on a page, but on the next page we still have another beers, also for Belgium beers are visible only on pages: 7,9 and 15.
