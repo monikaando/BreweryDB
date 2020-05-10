@@ -53,14 +53,14 @@ from a beer tap ;)
     2) Beside this I created 2 buttons which allow to reset searching data and jump to the next page
 
     Searching by name
-        1) I used endpoints: search/?key=XXX&p=${this.state.page}&type=beer&q=${this.state.name} It was useful
-        with searching, but BreweryDB didn't provide detailed searching. Whetever i put on the end it was looking
-        for if the whole beer object contain it. To search by name I checked if name of the beer includes value
-        of the input field.
+        1) I used endpoints: search/?key=XXX&p=${this.state.page}&type=beer&q=${this.state.name} It was 
+        useful with searching, but BreweryDB didn't provide detailed searching. Whetever i put on 
+        the end it was looking for if the whole beer object contain it. To search by name I checked if
+        name of the beer includes value of the input field.
 
     Searching by type
-        1) I used the same endpoints like for searching by name. I repeated the same procedure again, this time 
-        checking if beer.styles exist (becasue not always it is provided)
+        1) I used the same endpoints like for searching by name. I repeated the same procedure again,
+        this time checking if beer.styles exist (becasue not always it is provided)
 
     Searching by country
         1) When the page is load on the beginning the app is calling country code list to show it in a drop 
