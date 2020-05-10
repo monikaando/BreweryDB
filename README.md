@@ -54,7 +54,7 @@ from a beer tap ;)
 
     Searching by name
         1) I used endpoints: search/?key=XXX&p=${this.state.page}&type=beer&q=${this.state.name} It was useful
-        with searching, but Brewery didn't provide detailed searching. Whetever i put on the end it was looking
+        with searching, but BreweryDB didn't provide detailed searching. Whetever i put on the end it was looking
         for if the whole beer object contain it. To search by name I checked if name of the beer includes value
         of the input field.
 
@@ -76,8 +76,8 @@ from a beer tap ;)
         empty or have only few beers on a page, but on the next page we still have another beers, also for
         Belgium beers are visible only on pages: 7,9 and 15.
 
-        3) You can click a name of a beer and go to detail page with beer (from there you can go to its brewery
-        as well) 
+        3) You can click a name of a beer and go to detail page with beer (from there you can go to its
+        brewery as well) 
         
 ## Footer
     An additional element with the link to my github page.
