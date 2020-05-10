@@ -53,9 +53,9 @@ from a beer tap ;)
 
     - Searching by country
         1) When the page is load on the beginning the app is calling country code list to show it in a drop down list. Searching resetting this list, so if we won't refresh a page it is not visible. I set up the app that it calls code list again after you click on drop down list (it can take a while to download codes)
-    2) I discovered that searching doesn't work with locations, so I used: /beers/?withBreweries=Y&key=XXX=${this.state.page}
-    I must choose between two options: download every beer at once and make app waiting till all beers are downloaded, or show beers we are looking for, on these pages where they are physically exist and then search beers page by page. I chose option with button, what couses that some pages are half empty or have only few beers on a page, but on the next page we still have another beers, also for Belgium beers are visible only on pages: 7,9 and 15.
-    3) You can click a name of a beer and go to detail page with beer (from there you can go to its brewery as well) 
+        2) I discovered that searching doesn't work with locations, so I used: /beers/?withBreweries=Y&key=XXX=${this.state.page}
+        I must choose between two options: download every beer at once and make app waiting till all beers are downloaded, or show beers we are looking for, on these pages where they are physically exist and then search beers page by page. I chose option with button, what couses that some pages are half empty or have only few beers on a page, but on the next page we still have another beers, also for Belgium beers are visible only on pages: 7,9 and 15.
+        3) You can click a name of a beer and go to detail page with beer (from there you can go to its brewery as well) 
         
 ## Footer
     An additional element with the link to my github page.
