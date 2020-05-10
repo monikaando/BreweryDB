@@ -30,7 +30,8 @@ To run the application: npm start after installing node modules (npm i)
     2) Beside this I created 2 buttons which allow to reset searching data and jump to the next page <br>
 
     * Searching by name<br><br>
-    1) I used endpoints: search/?key=XXX&p=${this.state.page}&type=beer&q=${this.state.name} It was useful with searching, but Brewery didn't provide detailed searching. Whetever i put on the end it was looking for if the whole beer object contain it. To search by name I checked if name of the beer includes value of the input field.<br>
+    1) I used endpoints: search/?key=XXX&p=${this.state.page}&type=beer&q=${this.state.name} 
+    It was useful with searching, but Brewery didn't provide detailed searching. Whetever i put on the end it was looking for if the whole beer object contain it. To search by name I checked if name of the beer includes value of the input field.<br>
 
     * Searching by type<br><br>
     1) I used the same endpoints like for searching by name. I repeated the same procedure again, this time checking if beer.styles exist (becasue not always it is provided)<br>
