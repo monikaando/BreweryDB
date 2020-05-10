@@ -87,7 +87,9 @@ from a beer tap ;)
 ## Visuals
 <b>Video</b>
 https://youtu.be/-sevudRJlAo
-<b>Desktop version:</>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-sevudRJlAo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<b>Desktop version:</b>
 
 <div style="display: flex; justify-content: center">
 <img src="https://res.cloudinary.com/mokaweb/image/upload/c_scale,w_800/v1589118327/PXl.WIDGETS/1.png" />
