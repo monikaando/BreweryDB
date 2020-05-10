@@ -32,11 +32,12 @@ from a beer tap ;)
     1) On the beginning page is loading all breweries in the BreweryDB database
     2) You can choose - from a dropdown list - a country you would like to show breweries for. 
        Database provides only 3 countries (US, IE, BE)
-    3) When you are opening a website the app is loading country code list for drop down list using /locations/
-    4) Then app is calling all breweries from a database and show them on the page (as a default start screen) 
-       using /locations/?countryIsoCode=${this.state.select.selectedCode}&order=breweryName - where
-       countryIsoCode has empty value for All countries. The same endpoints are used for looking for breweries
-       from country, but then app provides cuntryIscCode value.
+    3) When you are opening a website the app is loading country code list for drop down list using
+       /locations/
+    4) Then app is calling all breweries from a database and show them on the page (as a default start
+       screen) using /locations/?countryIsoCode=${this.state.select.selectedCode}&order=breweryName 
+       where countryIsoCode has empty value for All countries. The same endpoints are used for looking
+       for breweries from country, but then app provides cuntryIscCode value.
 
     Breweries details
        When you click on a brewery name you are going to the brewery detail page where you can see information
@@ -74,7 +75,7 @@ from a beer tap ;)
         and then search beers page by page. I chose option with button, what couses that some pages are half
         empty or have only few beers on a page, but on the next page we still have another beers, also for
         Belgium beers are visible only on pages: 7,9 and 15.
-        
+
         3) You can click a name of a beer and go to detail page with beer (from there you can go to its brewery
         as well) 
         
