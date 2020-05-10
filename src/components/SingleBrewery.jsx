@@ -20,7 +20,7 @@ class SingleBrewery extends Component {
     getSingleBrewery(){
         axios({
             method: "GET",
-            url: `http://localhost:3000/brewery/${this.props.match.params.id}/?key=4a67a4e833fd9ccbd77588fbaa724c33`
+            url: `http://localhost:3000/brewery/${this.props.match.params.id}/?key=659d5c6b8f3d2447f090119e48202fdb`
         })
         .then(res => {
             this.setState({
@@ -36,7 +36,7 @@ class SingleBrewery extends Component {
     getAllBeers(){
         axios({
             method: "GET",
-            url: `http://localhost:3000/brewery/${this.props.match.params.id}/beers/?key=4a67a4e833fd9ccbd77588fbaa724c33`
+            url: `http://localhost:3000/brewery/${this.props.match.params.id}/beers/?key=659d5c6b8f3d2447f090119e48202fdb`
         })
         .then(res => {
             this.setState({
