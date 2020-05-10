@@ -96,7 +96,7 @@ getAllBeersCountry(){
 getBeersByName(){
     axios({
         method: "GET",
-        url: `http://localhost:3000/search?key=659d5c6b8f3d2447f090119e48202fdb&p=${this.state.page}&type=beer&q=${this.state.name}`
+        url: `http://localhost:3000/search/?key=659d5c6b8f3d2447f090119e48202fdb&p=${this.state.page}&type=beer&q=${this.state.name}`
     })
     .then(res => {
         this.setState({
@@ -111,7 +111,7 @@ getBeersByName(){
 getBeersByType(){
     axios({
         method: "GET",
-        url: `http://localhost:3000/search?key=659d5c6b8f3d2447f090119e48202fdb&p=${this.state.page}&type=beer&q=${this.state.type}`
+        url: `http://localhost:3000/search/?key=659d5c6b8f3d2447f090119e48202fdb&p=${this.state.page}&type=beer&q=${this.state.type}`
     })
     .then(res => {
         this.setState({
