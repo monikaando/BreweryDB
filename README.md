@@ -65,7 +65,7 @@ from a beer tap ;)
 <b>Desktop version:</b>
 
 <div style="display: flex; justify-content: center">
-<img src="https://res.cloudinary.com/mokaweb/image/upload/v1589118327/PXl.WIDGETS/1.png" />
+<img src="https://res.cloudinary.com/mokaweb/image/upload/c_scale,w_800/v1589118327/PXl.WIDGETS/1.png" />
 </div>
 
 <div style="display: flex; justify-content: center">
