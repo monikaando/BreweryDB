@@ -85,8 +85,10 @@ from a beer tap ;)
     An additional element with the link to my github page.
     
 ## Visuals
+<a href="https://youtu.be/-sevudRJlAo">
 <b>Video</b>
-https://youtu.be/-sevudRJlAo
+</a>
+
 
 <b>Desktop version:</b>
 
