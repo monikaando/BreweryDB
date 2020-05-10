@@ -97,11 +97,11 @@ from a beer tap ;)
 </div>
 
 <b>Mobile version:</b>
-<div style="display: flex; justify-content: center width: 50%">
+<div style="display: flex; justify-content: center; width: 100px">
 <img src="https://res.cloudinary.com/mokaweb/image/upload/v1589118309/PXl.WIDGETS/1mob.png" />
 </div>
 
-<div style="display: flex; justify-content: center; width: 50%">
+<div style="display: flex; justify-content: center; width: 200px">
 <img src="https://res.cloudinary.com/mokaweb/image/upload/v1589118309/PXl.WIDGETS/2mob.png" />
 </div>
 
