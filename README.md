@@ -15,15 +15,14 @@ To run the application: npm start after installing node modules (npm i)
 TapApp
 from a beer tap ;)
 ## General info
-    1) Deployed version of TapApp: https://tap-app.netlify.app/
-    2) Application uses BreweryDB's API.
-    3) I made the application according to instructions from PXL widgets.
-    4) The whole application is responsive.
-    5) I took care to keep the code is clean and readable.
-    6) For images I used Claudinary.
-    7) For styling I used Sass(I could use Bootstrap or Bulma (like in my previous projects),
+    1) Application uses BreweryDB's API.
+    2) I made the application according to instructions from PXL widgets.
+    3) The whole application is responsive.
+    4) I took care to keep the code is clean and readable.
+    5) For images I used Claudinary.
+    6) For styling I used Sass(I could use Bootstrap or Bulma (like in my previous projects),
        but I wanted to show that I know how CSS, Sass and responsivity works.)
-    8) I added a favicon and the title for the website.
+    7) I added a favicon and the title for the website.
 ## Content    
 
 ## Navigation bar
