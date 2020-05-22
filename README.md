@@ -16,7 +16,7 @@ To run the application: npm start after installing node modules (npm i)
 TapApp
 from a beer tap ;)
 ## General info
-    1) Application uses BreweryDB's API.
+    1) Application uses BreweryDB's API to search breweries by country, beers by name, type and country.
     2) I made the application according to instructions from PXL widgets.
     3) The whole application is responsive.
     4) I took care to keep the code is clean and readable.
