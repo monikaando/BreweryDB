@@ -2,6 +2,7 @@
 * [Setup](#setup)
 * [Name](#name)
 * [General info](#general-info)
+* [Stack](#stack)
 * [Content](#content)
     - [Navigation bar](#navigation-bar)
     - [Breweries button](#breweries-button)
@@ -23,6 +24,9 @@ from a beer tap ;)
     6) For styling I used Sass(I could use Bootstrap or Bulma (like in my previous projects),
        but I wanted to show that I know how CSS, Sass and responsivity works.)
     7) I added a favicon and the title for the website.
+## Stack
+React, HTML, CSS
+
 ## Content    
 
 ## Navigation bar
