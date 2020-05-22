@@ -25,7 +25,8 @@ from a beer tap ;)
        but I wanted to show that I know how CSS, Sass and responsivity works.)
     7) I added a favicon and the title for the website.
 ## Stack
-React, HTML, CSS
+React, HTML, CSS, 
+BreweryDB API
 
 ## Content    
 
