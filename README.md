@@ -88,8 +88,7 @@ React, HTML, CSS, BreweryDB API
     An additional element with the link to my github page.
     
 ## Visuals
-<a href="https://youtu.be/ASt1TVXXtIA"><b>Video</b></a>
-Click a video and see how TapApp works.
+Click a <a href="https://youtu.be/ASt1TVXXtIA"><b>video</b></a> and see how TapApp works.
 
 <b>Desktop version:</b>
 
